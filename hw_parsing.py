@@ -25,7 +25,6 @@ except:
 ##################################################################
 ### YOUR CODE TO FIND & CONCATENATE ALL SCPI QUERIES GOES HERE
 ##################################################################
-
 email= "jason_webster@brown.edu"
 
 #results = re.findall('((?<=[\n.]\n^)((\[*[A-Z]{3,}[a-z?]*)(\[*:*[A-Z]{2,}[a-z?\] ]*)+.*\n))', userGuideText, re.MULTILINE)
