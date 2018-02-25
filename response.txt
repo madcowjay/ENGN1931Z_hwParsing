@@ -1,0 +1,2 @@
+SILENCE - No reponse was returned from the instrument.
+Are you sure you terminated your command properly?
