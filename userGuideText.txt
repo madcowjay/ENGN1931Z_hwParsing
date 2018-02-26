@@ -1,4 +1,4 @@
-Keysight E3631A 
+﻿Keysight E3631A 
 Triple Output
 DC Power Supply
 
@@ -4535,8 +4535,8 @@ INSTrument
 [:SELect]?
 :NSELect :{1|2|3}
 :NSELect?
-COUPle[:TRIGger] {ALL|NONE| <list>
-COUPle[:TRIGger]?
+:COUPle[:TRIGger] {ALL|NONE| <list>
+:COUPle[:TRIGger]?
 
 MEASure
 

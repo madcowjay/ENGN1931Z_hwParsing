@@ -27,21 +27,26 @@ except:
 ##################################################################
 email= "jason_webster@brown.edu"
 
-#results = re.findall('((?<=[\n.]\n^)((\[*[A-Z]{3,}[a-z?]*)(\[*:*[A-Z]{2,}[a-z?\] ]*)+.*\n))', userGuideText, re.MULTILINE)
-results = re.findall('^\[*[A-Z]{3,}[a-z?]*.*\n', userGuideText, re.MULTILINE)
-#print(results)
+#Grabs all lines that start with some type of command (including nodes)
+results = re.findall('^\**[A-Z]{3,}[A-Za-z\[\]:]*[?]', userGuideText, re.MULTILINE)
 print(len(results))
-#for c in results:
-	#print(c)
 count = 0;
+queryString = ''
 for i in range(len(results)):
-	if results[i].endswith('?\n'):
-		print(results[i-1],end='')
-		print(results[i],)
+	#This part gets all full queries that come immediately after their set commands
+	if (results[i].endswith('?')):
 		count += 1
+		command = results[i]
+		#remove optional nodes
+		command = re.sub('\[:[A-Za-z]*\]', '', command)
+		#remove parameters
+		command = re.sub('<[A-Za-z0-9]+>', '', command)
+		print('comm: ' + command)
+		queryString = queryString + command + '\n'
+	#This part gets queries that are broken up into multiple parts
 print(count)
 
-queryString='???' # UPDATE THIS LINE TO INCLUDE YOUR CONCATENATE SERIES OF QUERY COMMANDS AS ONE LONG STRING
+#queryString='???' # UPDATE THIS LINE TO INCLUDE YOUR CONCATENATE SERIES OF QUERY COMMANDS AS ONE LONG STRING
 ##################################################################
 ### HELPER CODE TO SAVE YOUR ANSWER and THE RESPONSE YOU RECEIVE
 ##################################################################
@@ -57,3 +62,12 @@ print(response)
 ##################################################################
 def yourSubmission():
 	return {'email':email,'hw':'parsing','queryString':queryString,'response':response}
+
+	"""		if ((results[i][0] == '[') | (results[i][0] == ':')):
+				j = 0
+				#go back and get the parent
+				while ((results[i-j][0] == '[') | (results[i-j][0] == '\n') | (results[i-j][0] == ':')):
+					j = j + 1
+				command = results[i-j][0:len(results[i-j])-1] + results[i]
+			else:
+				command = results[i] """
